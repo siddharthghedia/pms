@@ -18,10 +18,8 @@ class ProductFactory extends Factory
      */
     public function definition(): array
     {
-        $types = Product::$types;
         return [
-            'name' => fake()->name(),
-            'type' => $types[array_rand($types, 1)]
+            'name' => fake()->name()
         ];
     }
 }

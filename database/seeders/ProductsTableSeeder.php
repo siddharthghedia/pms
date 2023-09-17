@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class ProductsTableSeeder extends Seeder
@@ -12,6 +13,11 @@ class ProductsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        Product::factory(5)->create();
+        $types = Product::$types;
+        $products = Product::factory(5)->create();
+        foreach ($products as $product) {
+            $product->type = $types[array_rand($types, 1)];
+            $product->save();
+        }
     }
 }
